@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 900px;
+      max-width: 1100px;
       margin: auto;
       padding: 20px;
       background: #f0f0f5;
@@ -48,7 +48,7 @@
       background-color: #f5faff;
     }
     img {
-      max-width: 60px;
+      max-width: 80px;
       height: auto;
       display: block;
       margin: auto;
@@ -60,26 +60,26 @@
       font-size: 0.9rem;
     }
     
-    .flicker-cell {
+    .flicker-wrapper {
       position: relative;
-      width: 32px;
-      height: 32px;
+      width: 80px;        /* Match image size */
+      height: 90px;
+      display: inline-block;
+      vertical-align: middle; /* Aligns with other images */
     }
     
     .flicker-image {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100%;        /* Full container size */
       height: 100%;
+      object-fit: contain; /* Optional: maintains aspect ratio */
       opacity: 0;
-      animation: flicker 6s infinite;
-      transition: opacity 1s ease-in-out;
-      z-index: 0;
-      background: #fff;
+      animation: hardcut 6s infinite steps(1, end);
     }
     
-    /* Each child gets a staggered delay */
+    /* Offset each image so only one is visible at a time */
     .flicker-image:nth-child(1) {
       animation-delay: 0s;
     }
@@ -89,14 +89,20 @@
     .flicker-image:nth-child(3) {
       animation-delay: 4s;
     }
+    .flicker-image:nth-child(4) {
+      animation-delay: 6s;
+    }
+    .flicker-image:nth-child(5) {
+      animation-delay: 8s;
+    }
+    .flicker-image:nth-child(6) {
+      animation-delay: 10s;
+    }
     
-    /* Updated keyframes with extra overlap */
-    @keyframes flicker {
-      0%   { opacity: 0; z-index: 1; }
-      5%   { opacity: 1; }
-      45%  { opacity: 1; }
-      50%  { opacity: 0; z-index: 0; }
-      100% { opacity: 0; }
+    @keyframes hardcut {
+      0%   { opacity: 1; }
+      33.33% { opacity: 0; }
+      100%  { opacity: 0; }
     }
   </style>
 </head>
@@ -107,7 +113,7 @@
   </header>
 
   <main>
-    <h2>Furni Heights Reference</h2>
+    <h2>Furni Height Reference</h2>
     <table>
       <thead>
         <tr>
@@ -138,8 +144,8 @@
         </tr>
         <tr>
           <td>0.15</td>
-          <td></td>
-          <td></td>
+          <td>4.8px</td>
+          <td>5px</td>
           <td>Traxdisc (Trax)</td>
           <td><img src="images/trax-traxdisc.png" alt="Traxdisc (Trax)" /></td>
           <td></td>
@@ -154,8 +160,8 @@
         </tr>
         <tr>
           <td>0.2</td>
-          <td></td>
-          <td></td>
+          <td>6.4px</td>
+          <td>6px</td>
           <td>Trax sample (Trax)</td>
           <td><img src="images/trax-traxsamplelatinlove3.png" alt="Latin Love 3" /><img src="images/trax-traxsampledance4.png" alt="Dance 4" /><img src="images/trax-traxsamplerock3.png" alt="Rock 3" /></td>
           <td></td>
@@ -218,8 +224,8 @@
         </tr>
         <tr>
           <td>0.8</td>
-          <td></td>
-          <td></td>
+          <td>25.6px</td>
+          <td>26px</td>
           <td>Chinese Lacquer Table (Asian)</td>
           <td><img src="images/asian-chineselacquertable.png" alt="Chinese Lacquer Table (Asian)" /></td>
           <td></td>
@@ -245,13 +251,15 @@
           <td>28.8px</td>
           <td>29px</td>
           <td>Occasional Table (Plasto)</td>
-          <td class="flicker-cell">
-            <img src="images/plasto-occtable1x1red.png" alt="Occasional Table (Plasto)" class="flicker-image">
-            <img src="images/plasto-occtable1x1yellow.png" alt="Occasional Table (Plasto)" class="flicker-image">
-            <img src="images/plasto-occtable1magenta.png" alt="Occasional Table (Plasto)" class="flicker-image">
-            <img src="images/plasto-occtable1x1green.png" alt="Occasional Table (Plasto)" class="flicker-image">
-            <img src="images/plasto-occtable1x1brown.png" alt="Occasional Table (Plasto)" class="flicker-image">
-            <img src="images/plasto-occtable1x1darkbrown.png" alt="Occasional Table (Plasto)" class="flicker-image">
+          <td>
+            <div class="flicker-wrapper">
+                <img src="images/plasto-occtable1x1red.png" alt="Occasional Table (Plasto)" class="flicker-image">
+                <img src="images/plasto-occtable1x1yellow.png" alt="Occasional Table (Plasto)" class="flicker-image">
+                <img src="images/plasto-occtable1x1magenta.png" alt="Occasional Table (Plasto)" class="flicker-image">
+                <img src="images/plasto-occtable1x1green.png" alt="Occasional Table (Plasto)" class="flicker-image">
+                <img src="images/plasto-occtable1x1brown.png" alt="Occasional Table (Plasto)" class="flicker-image">
+                <img src="images/plasto-occtable1x1darkbrown.png" alt="Occasional Table (Plasto)" class="flicker-image">
+            </div>
           </td>
           <td>These are from the regular Catalogue, for Funky Friday Plasto Occasional Tables, see below.</td>
         </tr>
@@ -362,23 +370,23 @@
         <tr>
           <td>1.4</td>
           <td>44.8px</td>
-          <td>45px
+          <td>45px</td>
           <td>Bardesk (Lodge)</td>
           <td><img src="images/lodge-bardesk.png" alt="Bardesk (Lodge)" /></td>
           <td></td>
         </tr>
         <tr>
           <td>1.4</td>
-          <td></td>
-          <td></td>
+          <td>44.8px</td>
+          <td>45px</td>
           <td>Dirty Duck Barrel (Cabin)</td>
           <td><img src="images/cabin-ddbarrel.png" alt="Dirty Duck Barrel (Cabin)" /></td>
           <td></td>
         </tr>
         <tr>
           <td>2.3</td>
-          <td></td>
-          <td></td>
+          <td>73.6px</td>
+          <td>74px</td>
           <td>Chinese Lacquer Bookshelf (Asian)</td>
           <td><img src="images/asian-chineselacquerbookshelf.png" alt="Chinese Lacquer Bookshelf (Asian)" /></td>
           <td></td>
@@ -393,8 +401,8 @@
         </tr>
         <tr>
           <td>3.5</td>
-          <td></td>
-          <td></td>
+          <td>112px</td>
+          <td>112px</td>
           <td>Greek Pillar (Catalogue Rare)</td>
           <td><img src="images/catrare-greekpillar.png" alt="Greek Pillar (Catalogue Rare)" /></td>
           <td></td>
