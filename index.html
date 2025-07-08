@@ -62,7 +62,7 @@
     
     .flicker-cell {
       position: relative;
-      width: 32px; /* or your image size */
+      width: 32px; /* your image size */
       height: 32px;
     }
     
@@ -72,6 +72,7 @@
       left: 0;
       opacity: 0;
       animation: flicker 6s infinite;
+      transition: opacity 1s ease-in-out;
     }
     
     .flicker-image:nth-child(1) {
@@ -86,9 +87,9 @@
     
     @keyframes flicker {
       0%   { opacity: 0; }
-      10%  { opacity: 1; }
+      5%   { opacity: 1; }
       30%  { opacity: 1; }
-      40%  { opacity: 0; }
+      35%  { opacity: 0; }
       100% { opacity: 0; }
     }
   </style>
